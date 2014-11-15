@@ -1,50 +1,54 @@
-/*
- * List.cpp
- *
- *  Created on: Nov 14, 2014
- *      Author: ntilak
- */
+	/*
+	 * List.cpp
+	 *
+	 *  Created on: Nov 14, 2014
+	 *      Author: ntilak
+	 */
 
-#include "List.h"
-#include "Node.h"
-#include <iostream>
-using namespace std;
+	#include "List.h"
+	#include "Node.h"
+	#include <iostream>
+	using namespace std;
 
-List::List() {
-	m_head = NULL;
+	List::List() {
+		m_head = NULL;
+                m_root = m_head;
+	}
 
-}
+	List::~List() {
+		// TODO Auto-generated destructor stub
+	}
 
-List::~List() {
-	// TODO Auto-generated destructor stub
-}
 
 void List::insert(int value) {
-	Node* temp = new Node(value);
-	if (m_head == NULL) {
-		m_head = temp;
-	} else {
-		Node* current = m_head;
-		Node* prev = NULL;
-		while(current->m_val <= value && current->m_next != NULL) {
-			prev = current;
-			current = current->m_next;
-		}
-		if(current == m_head) {
-			temp->m_next = m_head;
-			m_head = temp;
-		} else if (current->m_next == NULL && current->m_val < value) {
-		        current->m_next = temp;
-                        temp->m_next = NULL;
-                } else {
-                        prev->m_next = temp;
-                        temp->m_next = current;
-		}
+     Node* newnode = new Node(value);
+ 
+     if (m_head == NULL) {
+         m_head = newnode;
+     } else {
+         Node* current = m_head;
+         Node* next = current->m_next;
+         while(current->m_val < value) {
+              if (next == NULL) {
+                 break;
+              } else {
+                 current = current->m_next;
+                 next = current->m_next;
+              }
+         }
+         if(current == m_head && m_head->m_val > value) {
+           newnode->m_next = m_head;
+           m_head = newnode;
+         } else {
+           current->m_next = newnode;
+           newnode->m_next = next;
+         }
+     }
 
-	}
-cout << "Head =" << m_head->m_val << endl;
-}
+}            
+         
 
+    
 void List::display() {
 	Node* current = m_head;
 	if(m_head == NULL) {
@@ -76,3 +80,37 @@ void List::reverse() {
      }
      display();
 }
+
+int List::isPalindrome(Node* m_root, Node* node2) {
+      if (node2 == NULL) {
+         return 1;
+         m_root = m_head;
+      }
+
+      int res = isPalindrome(m_root,node2->m_next);
+ 
+      if(res == 0) {
+        return 0;
+      } else {
+        if (m_root->m_val == m_root->m_val) {
+           res = 1;
+        } else {
+           res = 0;
+        }
+        m_root = m_root->m_next;
+        return res;
+      }
+}
+
+void List::InOrderInsert(int value) {
+       Node* newnode = new Node(value);
+       if (m_head == NULL) {
+          m_head = newnode;
+       } else {
+          Node* current = m_head;
+          while (current->m_next != NULL) {
+                current = current->m_next;
+          }
+          current->m_next = newnode;
+      }
+} 

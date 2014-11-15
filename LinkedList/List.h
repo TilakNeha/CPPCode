@@ -13,9 +13,12 @@ public:
 	List();
 	virtual ~List();
 	void insert(int value);
+        void InOrderInsert(int value);
 	void display();
         void reverse();
+        int isPalindrome(Node* node1, Node* node2);
 	Node* m_head;
+        Node* m_root;
 };
 
 #endif /* LIST_H_ */
