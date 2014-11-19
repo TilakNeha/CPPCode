@@ -10,11 +10,14 @@ int main() {
    tree.insert(3);
    tree.insert(7);
    tree.insert(5);
-   cout << "Preorder :" << endl;
+   cout << endl << "Preorder :" << endl;
    tree.preorder(tree.root);
-   cout << "Postorder :" << endl;
+   cout << endl << "Postorder :" << endl;
    tree.postorder(tree.root);
-   cout << "Inorder :" << endl;
+   cout << endl << "Inorder :" << endl;
    tree.inorder(tree.root);
+   tree.iterative_preorder();
+   cout << "lca(5,7) = " << tree.lca(tree.root,5,7) << endl;
+   tree.BFS();
    return 1;
 }

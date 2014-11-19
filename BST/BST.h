@@ -12,6 +12,9 @@ class BST {
      void preorder(Node* tnode);
      void inorder(Node* tnode);
      void postorder(Node* tnode);
+     int lca(Node* tnode, int val1, int val2);
+     void iterative_preorder();
+     void BFS();
      Node* root;
 };
 
