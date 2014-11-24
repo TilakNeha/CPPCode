@@ -1,3 +1,6 @@
+//Determine whether an integer is a palindrome. Do this without extra space.
+//Author : Neha Tilak
+
 #include <iostream>
 using namespace std;
 
